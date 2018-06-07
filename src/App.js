@@ -34,8 +34,8 @@ class App extends Component {
         <header className="App-header">
           <img src={reactLogo} className="App-logo-spin" alt="logo" />
           <img src={firebaseLogo} className="App-logo-bounce" alt="logo" />
-          <h1 className="App-title">React and Firebase working dynamically</h1>
-          <h2 className="App-title">La Capsule experiments</h2>
+          <h1 className="App-title-h1">React and Firebase working dynamically</h1>
+          <h2 className="App-title-h2">La Capsule experiments</h2>
         </header>
         <p className="App-intro">
           {this.state.speed}
