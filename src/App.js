@@ -4,19 +4,23 @@ import './App.css';
 import * as firebase from 'firebase';
 
 class App extends Component {
-
   constructor(){
     super();
+    // Valeur initiale de speed: 10
     this.state = {
       speed: 10
     };
   }
 
   componentDidMount() {
+    // F I R E B A S E
     const rootRef = firebase.database().ref();
     const speedRef = rootRef.child('speed');
     speedRef.on('value', snap => {
       this.setState({
+        // le state speed prends la valeur de la DB une fois le composant monté.
+        // ainsi, à chaque fois que la valeur est changée sur la DB (je t'ai envoyé les droits)
+        // la valeur est push ici et la page se recharge automatiquement
         speed: snap.val()
       });
     });
