@@ -1,39 +1,45 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import reactLogo from './logo.svg';
 import firebaseLogo from './firebase.png';
 
 import './App.css';
 import * as firebase from 'firebase';
+import admin from 'firebase-admin';
+
+firebase.initializeApp({
+  apiKey: "AIzaSyCmi6R6Va-Jms5-umQdZ6BC7NXWQf5zUYc",
+  authDomain: "my-project-1523863166592.firebaseapp.com",
+  databaseURL: "https://my-project-1523863166592.firebaseio.com",
+  projectId: "my-project-1523863166592",
+  storageBucket: "my-project-1523863166592.appspot.com",
+  messagingSenderId: "736478464920"
+});
+
+var db = firebase.firestore();
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    // Valeur initiale de speed: 10
     this.state = {
-      speed: 10
+      speed: 10,
+      input: null
     };
   }
 
   componentDidMount() {
-    // F I R E B A S E
-    const rootRef = firebase.database().ref();
-    const speedRef = rootRef.child('speed');
-    speedRef.on('value', snap => {
-      this.setState({
-        // le state speed prends la valeur de la DB une fois le composant monté.
-        // ainsi, à chaque fois que la valeur est changée sur la DB (je t'ai envoyé les droits)
-        // la valeur est push ici et la page se recharge automatiquement
-        speed: snap.val()
-      });
-    });
+    const rootRef = db.collection('test').doc('enfant').onSnapshot({
+      includeMetadataChanges: true
+    }, doc => {
+      this.setState({speed: doc.data().speed});
+    })
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={reactLogo} className="App-logo-spin" alt="logo" />
-          <img src={firebaseLogo} className="App-logo-bounce" alt="logo" />
+          <img src={reactLogo} className="App-logo-spin" alt="logo"/>
+          <img src={firebaseLogo} className="App-logo-bounce" alt="logo"/>
           <h1 className="App-title-h1">React and Firebase working dynamically</h1>
           <h2 className="App-title-h2">La Capsule experiments</h2>
         </header>
