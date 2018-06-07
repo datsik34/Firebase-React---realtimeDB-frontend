@@ -1,3 +1,9 @@
+1. Clone it
+2. npm i
+3. npm start
+4. access page through http://localhost:3000/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
