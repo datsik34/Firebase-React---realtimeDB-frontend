@@ -22,8 +22,20 @@ class App extends Component {
     super();
     this.state = {
       speed: 10,
-      input: null
+      value: null
     };
+  }
+
+  handleChange = (event) => this.setState({value: event.target.value});
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    db.collection("test").doc("enfant").set({speed: this.state.value})
+    .then(function() {
+      console.log('SUCCESS');
+    }).catch(function(error) {
+      console.error("Error writing document: ", error);
+    });
   }
 
   componentDidMount() {
@@ -46,6 +58,13 @@ class App extends Component {
         <p className="App-intro">
           {this.state.speed}
         </p>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <p>This button will ONLY change DB's value</p>
+            <input type="number" value={this.state.value} onChange={this.handleChange} className="input"/>
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

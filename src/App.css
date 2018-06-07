@@ -8,7 +8,7 @@
 }
 
 .App-logo-bounce {
-  animation: App-logo-bounce 1.5s;
+  animation: App-logo-bounce 1.2s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   height: 80px;
@@ -33,12 +33,15 @@
   font-size: 30px;
 }
 
+.input {
+  width: 80px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 @keyframes App-logo-bounce {
-  from { transform: translate3d(0, 3px, 0);     }
+  from { transform: translate3d(0, 3px, 0); }
   to   { transform: translate3d(0, -3px, 0); }
 }
