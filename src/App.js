@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import reactLogo from './logo.svg';
+import firebaseLogo from './firebase.png';
+
 import './App.css';
 import * as firebase from 'firebase';
 
@@ -30,8 +32,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img src={reactLogo} className="App-logo" alt="logo" />
+          <img src={firebaseLogo} className="App-logo" alt="logo" />
+          <h1 className="App-title">React and Firebase working dynamically</h1>
+          <h2 className="App-title">La Capsule experiments</h2>
         </header>
         <p className="App-intro">
           {this.state.speed}
