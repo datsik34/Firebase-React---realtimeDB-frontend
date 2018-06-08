@@ -1,36 +1,27 @@
 import React, {Component} from 'react';
 import reactLogo from './logo.svg';
-import firebaseLogo from './firebase.png';
-
+import firebaseLogo from './firebase.svg';
 import './App.css';
 import * as firebase from 'firebase';
 import admin from 'firebase-admin';
 
-firebase.initializeApp({
-  apiKey: "AIzaSyCmi6R6Va-Jms5-umQdZ6BC7NXWQf5zUYc",
-  authDomain: "my-project-1523863166592.firebaseapp.com",
-  databaseURL: "https://my-project-1523863166592.firebaseio.com",
-  projectId: "my-project-1523863166592",
-  storageBucket: "my-project-1523863166592.appspot.com",
-  messagingSenderId: "736478464920"
-});
 
-var db = firebase.firestore();
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       speed: 10,
-      value: null
+      value: 0
     };
   }
+
 
   handleChange = (event) => this.setState({value: event.target.value});
 
   handleSubmit = (event) => {
     event.preventDefault();
-    db.collection("test").doc("enfant").set({speed: this.state.value})
+    firebase.firestore().collection("test").doc("enfant").set({speed: this.state.value})
     .then(function() {
       console.log('SUCCESS');
     }).catch(function(error) {
@@ -39,7 +30,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const rootRef = db.collection('test').doc('enfant').onSnapshot({
+    firebase.firestore().collection('test').doc('enfant').onSnapshot({
       includeMetadataChanges: true
     }, doc => {
       this.setState({speed: doc.data().speed});
